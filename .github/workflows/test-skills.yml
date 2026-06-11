@@ -1,0 +1,29 @@
+name: Test SKILLs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/SKILL.md'
+      - 'tests/test_skills.py'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/SKILL.md'
+      - 'tests/test_skills.py'
+
+jobs:
+  test:
+    name: Validate SKILL files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run SKILL validation tests
+        run: python tests/test_skills.py
