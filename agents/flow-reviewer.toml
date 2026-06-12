@@ -1,0 +1,19 @@
+# ~/.vibe/agents/flow-reviewer.toml
+
+display_name= "flow-reviewer"
+description= """Sub-agent specializing in structural analysis of scientific articles, \
+             focusing on organization, paragraph chaining, flow of ideas, proper use \
+             of figures, tables, and equations, and identifying content that should be \
+             converted to tables or equations."""
+
+safety = "safe"
+agent_type = "subagent"
+auto_approve = true
+
+enabled_tools = [
+    "read_file",
+    "grep",
+    "cat",
+]
+
+system_prompt_id = "code-architect"

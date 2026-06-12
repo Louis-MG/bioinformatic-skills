@@ -1,0 +1,18 @@
+# ~/.vibe/agents/specialist-reviewer.toml
+
+display_name= "specialist-reviewer"
+description= """Sub-agent specializing in subject-matter review of scientific articles, \
+             focusing on introduction, discussion, and conclusion content validation. \
+             Specialty is user-defined or determined from article abstract."""
+
+safety = "safe"
+agent_type = "subagent"
+auto_approve = true
+
+enabled_tools = [
+    "read_file",
+    "grep",
+    "cat",
+]
+
+system_prompt_id = "specialist-reviewer"

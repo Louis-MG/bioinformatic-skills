@@ -1,0 +1,17 @@
+# ~/.vibe/agents/english-teacher.toml
+
+display_name= "english-teacher"
+description= """Sub-agent specializing in linguistic correction of scientific articles, \
+             focusing on grammar, conjugation, phrasing, temporal agreement, and vocabulary precision."""
+
+safety = "safe"
+agent_type = "subagent"
+auto_approve = true
+
+enabled_tools = [
+    "read_file",
+    "grep",
+    "cat",
+]
+
+system_prompt_id = "english-teacher"
