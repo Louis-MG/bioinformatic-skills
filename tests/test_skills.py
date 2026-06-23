@@ -221,11 +221,11 @@ def main():
                 print(f"✓ {file_path}")
     
     # ===== Agent TOML Validation =====
-    agent_files = glob.glob('agents/*.toml')
+    agent_files = glob.glob('**/agents/*.toml', recursive=True)
     all_agent_names = []
     
     if not agent_files:
-        print("\nNo agent TOML files found in agents/ directory.")
+        print("\nNo agent TOML files found in **/agents/ directories.")
     else:
         # First pass: collect all agent names (from filenames)
         for file_path in agent_files:
@@ -248,20 +248,26 @@ def main():
                 print(f"✓ {file_path}")
     
     # ===== Prompt File Validation =====
-    # Check that every agent has a corresponding prompt file with the same name
-    prompt_files = glob.glob('prompts/*.md')
+    # Check that every agent has a corresponding prompt file with the same name in the same skill directory
+    prompt_files = glob.glob('**/prompts/*.md', recursive=True)
     
     for agent_file in agent_files:
         agent_name = os.path.basename(agent_file).replace('.toml', '')
-        prompt_path = f"prompts/{agent_name}.md"
+        # Get the skill directory (parent of agents directory)
+        agent_dir = os.path.dirname(agent_file)
+        skill_dir = os.path.dirname(agent_dir)
+        prompt_path = os.path.join(skill_dir, 'prompts', f"{agent_name}.md")
         if not os.path.exists(prompt_path):
             all_passed = False
-            print(f"\nPrompt file: {agent_file}:")
+            print(f"\nAgent file: {agent_file}:")
             print(f"  - No corresponding prompt file found at {prompt_path}")
     
     for prompt_file in prompt_files:
         prompt_name = os.path.basename(prompt_file).replace('.md', '')
-        agent_path = f"agents/{prompt_name}.toml"
+        # Get the skill directory (parent of prompts directory)
+        prompt_dir = os.path.dirname(prompt_file)
+        skill_dir = os.path.dirname(prompt_dir)
+        agent_path = os.path.join(skill_dir, 'agents', f"{prompt_name}.toml")
         if not os.path.exists(agent_path):
             all_passed = False
             print(f"\nPrompt file: {prompt_file}:")
@@ -273,15 +279,18 @@ def main():
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
+        # Get the skill directory for this SKILL.md file
+        skill_dir = os.path.dirname(file_path)
+        
         # Check for mentions of agent names in the content
         for agent_file in agent_files:
             agent_name = os.path.basename(agent_file).replace('.toml', '')
             if agent_name in content:
-                # Verify the agent has a corresponding prompt
-                prompt_path = f"prompts/{agent_name}.md"
+                # Verify the agent has a corresponding prompt in the same skill directory
+                prompt_path = os.path.join(skill_dir, 'prompts', f"{agent_name}.md")
                 if not os.path.exists(prompt_path):
                     all_passed = False
-                    print(f"\nFIle path: {file_path}:")
+                    print(f"\nFile path: {file_path}:")
                     print(f"  - References agent '{agent_name}' but no corresponding prompt file exists at {prompt_path}")
     
     # ===== Summary =====
