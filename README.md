@@ -15,4 +15,5 @@ Bioinformatics:
  - 
 
 Science:
- - generate-graphical-abstract : to create a graphical abstract from a paper (understanding the context, the method, the goal, propposing layouts and colors before validation). Tested with chatGPT.
+ - generate-graphical-abstract : use when the user needs to create a graphical abstract from a paper (understanding the context, the method, the goal, propposing layouts and colors before validation). Tested with chatGPT. Needs refinement.
+ - article-review : use when the user wants a review and corrections for a scientific article. 3 phases: linguistic, structural, subject-specific. Needs additional ressources as Format-`journal`.md for journal-specific guidelines.

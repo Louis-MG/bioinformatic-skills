@@ -9,6 +9,7 @@ version: 1.2
 
 ## Overview
 This SKILL provides a comprehensive, multi-stage review process for scientific articles. It orchestrates three specialized sub-agents to systematically improve article quality: first through linguistic correction (grammar, vocabulary, phrasing), then through structural analysis (flow, paragraph chaining, figures/tables), and finally through subject-matter validation (introduction, discussion, conclusion). The skill is triggered when a user requests to review the writing of an article.
+The results of each sub-agent work is summarised and written in a report in markdown format in the folder.
 
 ## Instructions
 
@@ -61,6 +62,13 @@ This SKILL provides a comprehensive, multi-stage review process for scientific a
    6.2 Ensure the article maintains its original meaning and intent
    6.3 Confirm the final version is an improvement over the original
 
+7. **Reporting results**
+   7.1 Write a brief summary of the article to demonstrate your comprehension of it.
+   7.2 Write a section for each sub-agent report
+   7.2 Write for each section a table with 3 columns: the issue identified; the fix; the reason.
+   7.3 Write for each section a summary of the issues identified (if any) to help the writer understand what to change for the next article
+   7.4 Write everything in a markdown file in the folder.
+
 ## Sub-Agents
 
 This SKILL uses three specialized sub-agents:
@@ -72,12 +80,13 @@ Each sub-agent operates independently on the article and returns specific, actio
 
 ## References
 - Sub-agent configuration files: `english-teacher.toml`, `flow-reviewer.toml`, `specialist-reviewer.toml`
-- Standard English grammar and style guides
+- Standard English
 - Scientific writing best practices
+- See the guidelines for specific journals in the Reference fodler.
 
 ## Constraints
 - Maximum article length: 20,000 words per review session
 - File formats supported: .md, .txt, .docx (converted to text), .pdf (text extracted)
-- Response format: Structured markdown with clear section headers.
+- Response format: Structured markdown with clear section headers written as a file in the folder.
   Do not edit the pdf: the response must not be a re-wright of the article.
 - All sub-agents must complete before final compilation
