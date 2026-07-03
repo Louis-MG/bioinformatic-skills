@@ -65,7 +65,7 @@ The results of each sub-agent work is summarised and written in a report in mark
 7. **Reporting results**
    7.1 Write a brief summary of the article to demonstrate your comprehension of it.
    7.2 Write a section for each sub-agent report
-   7.2 Write for each section a table with 4 columns: the issue identified; the fix; the reason; a tick box.
+   7.2 Write for each section a table with 4 columns: the issue identified; the fix; the reason; a status checkbox. Write the checkbox as raw HTML (`<input type="checkbox">`), not markdown `- [ ]` syntax — GFM task-list syntax does not render inside table cells and produces disabled checkboxes even when it does.
    7.3 Write for each section a summary of the issues identified (if any) to help the writer understand what to change for the next article
    7.4 Write everything in a markdown file in the folder.
 
